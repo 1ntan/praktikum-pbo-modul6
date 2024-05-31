@@ -72,7 +72,6 @@ public class HalamanAwal extends Application {
             @Override
             public void handle(ActionEvent e) {
                 primaryStage.close();
-
             }
         });
 
