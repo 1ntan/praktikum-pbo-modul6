@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -33,11 +34,11 @@ public class HalamanLoginStudent {
         textTitleLoginStudent.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         gridLoginStudent.add(textTitleLoginStudent, 0, 0, 2, 1);
 
-        // label username
+        // label nim
         Label nim = new Label("NIM:");
         gridLoginStudent.add(nim, 0, 1);
 
-        // textfield username
+        // textfield nim
         TextField textFieldNIM = new TextField();
         textFieldNIM.setPromptText ("Masukkan NIM:");
         gridLoginStudent.add(textFieldNIM, 1, 1);
@@ -48,6 +49,28 @@ public class HalamanLoginStudent {
         hbBtnSignInLoginStudent.setAlignment(Pos.BOTTOM_RIGHT);
         hbBtnSignInLoginStudent.getChildren().add(btnSignInLoginStudent);
         gridLoginStudent.add(hbBtnSignInLoginStudent, 1, 5);
+
+        Text textInvalidNIM = new Text();
+        HBox hbTextInvalidNIM = new HBox(10);
+        hbTextInvalidNIM.setAlignment(Pos.BOTTOM_RIGHT);
+        hbTextInvalidNIM.getChildren().add(textInvalidNIM);
+        gridLoginStudent.add(hbTextInvalidNIM, 1,6);
+
+        btnSignInLoginStudent.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                textInvalidNIM.setText("");
+
+                String nim = textFieldNIM.getText();
+                if (nim.length() == 15) {
+                    HalamanMenuStudent.halamanMenuStudent(stageLoginStudent);
+                    textFieldNIM.setText("");
+                } else {
+                    textInvalidNIM.setFill(Color.FIREBRICK);
+                    textInvalidNIM.setText("Invalid NIM Format");
+                }
+            }
+        });
 
         // membuat tombol back
         Button btnBackLoginStudent =  new Button("Back");

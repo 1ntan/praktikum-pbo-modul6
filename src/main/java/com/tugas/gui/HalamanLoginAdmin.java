@@ -35,7 +35,7 @@ public class HalamanLoginAdmin {
         gridLoginAdmin.add(textTitleLoginAdmin, 0, 0, 2, 1);
 
         // label username
-        Label userName = new Label("User Name:");
+        Label userName = new Label("Username:");
         gridLoginAdmin.add(userName, 0, 1);
 
         // textfield username
