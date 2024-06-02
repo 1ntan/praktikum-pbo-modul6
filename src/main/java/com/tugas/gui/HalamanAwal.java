@@ -7,7 +7,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -36,167 +35,62 @@ public class HalamanAwal extends Application {
         hbSceneTitle.getChildren().add(scenetitle);
         grid.add(hbSceneTitle, 2, 0);
 
-        Button btnLoginStudent = new Button("Login as Student");
-        HBox hbBtnLoginStudent = new HBox(10);
-        hbBtnLoginStudent.setAlignment(Pos.CENTER);
-        hbBtnLoginStudent.getChildren().add(btnLoginStudent);
-        grid.add(hbBtnLoginStudent, 2, 1);
+        Text textLoginStudent = new Text("1. Login as Student");
+        grid.add(textLoginStudent, 2, 1);
 
-        btnLoginStudent.setOnAction(new EventHandler<ActionEvent>() {
+        Text textLoginAdmin = new Text("2. Login as Admin");
+        grid.add(textLoginAdmin, 2, 2);
+
+        Text textExit = new Text("3. Exit");
+        grid.add(textExit, 2, 3);
+
+        Text textMasukkanPilihan = new Text("Masukkan Pilihan:");
+        grid.add(textMasukkanPilihan, 2, 4);
+
+        TextField textFieldPilihan = new TextField();
+        textFieldPilihan.setPromptText("Angka 1 - 3");
+        grid.add(textFieldPilihan, 2, 5);
+
+        Button btnPilih = new Button("Pilih");
+        HBox hbBtnPilih = new HBox(10);
+        hbBtnPilih.setAlignment(Pos.BOTTOM_RIGHT);
+        hbBtnPilih.getChildren().add(btnPilih);
+        grid.add(hbBtnPilih, 2, 6);
+
+        Text textInvalidInput = new Text();
+        HBox hbTextInvalidInput = new HBox(10);
+        hbTextInvalidInput.setAlignment(Pos.BOTTOM_RIGHT);
+        hbTextInvalidInput.getChildren().add(textInvalidInput);
+        grid.add(hbTextInvalidInput, 2,7);
+
+        btnPilih.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent e) {
-                halamanLoginStudent(primaryStage);
-            }
-        });
+            public void handle(ActionEvent actionEvent) {
+                textInvalidInput.setText("");
 
-        Button btnLoginAdmin = new Button("Login as Admin");
-        HBox hbBtnLoginAdmin = new HBox(10);
-        hbBtnLoginAdmin.setAlignment(Pos.CENTER);
-        hbBtnLoginAdmin.getChildren().add(btnLoginAdmin);
-        grid.add(hbBtnLoginAdmin, 2, 2);
+                String pilihan = textFieldPilihan.getText();
+                switch (pilihan){
+                    case "1":
+                        HalamanLoginStudent.halamanLoginStudent(primaryStage);
+                        break;
+                    case "2":
+                        HalamanLoginAdmin.halamanLoginAdmin(primaryStage);
+                        break;
+                    case "3":
+                        primaryStage.close();
+                        break;
+                    default:
+                        textInvalidInput.setFill(Color.FIREBRICK);
+                        textInvalidInput.setText("Invalid Input");
+                        break;
 
-        btnLoginAdmin.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                halamanLoginAdmin(primaryStage);
-            }
-        });
-
-        Button btnExit = new Button("Exit");
-        HBox hbBtnExit = new HBox(10);
-        hbBtnExit.setAlignment(Pos.BOTTOM_RIGHT);
-        hbBtnExit.getChildren().add(btnExit);
-        grid.add(hbBtnExit, 2, 3);
-
-        btnExit.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent e) {
-                primaryStage.close();
+                }
             }
         });
 
         Scene scene = new Scene(grid, 300, 275);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-
-    private static void halamanLoginStudent(Stage primaryStage) {
-        primaryStage.close();
-
-        Stage stageLoginStudent = new Stage();
-        stageLoginStudent.setTitle("Login Student");
-
-        GridPane gridLoginStudent = new GridPane();
-        gridLoginStudent.setAlignment(Pos.CENTER);
-        gridLoginStudent.setHgap(10);
-        gridLoginStudent.setVgap(10);
-        gridLoginStudent.setPadding(new Insets(25, 25, 25, 25));
-
-        // judul
-        Text textTitleLoginStudent = new Text("Login Student");
-        textTitleLoginStudent.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        gridLoginStudent.add(textTitleLoginStudent, 0, 0, 2, 1);
-
-        // label username
-        Label nim = new Label("NIM:");
-        gridLoginStudent.add(nim, 0, 1);
-
-        // textfield username
-        TextField textFieldNIM = new TextField();
-        textFieldNIM.setPromptText ("Masukkan NIM:");
-        gridLoginStudent.add(textFieldNIM, 1, 1);
-
-        // membuat tombol sign in student
-        Button btnSignInLoginStudent =  new Button("Sign in");
-        HBox hbBtnSignInLoginStudent = new HBox(10);
-        hbBtnSignInLoginStudent.setAlignment(Pos.BOTTOM_RIGHT);
-        hbBtnSignInLoginStudent.getChildren().add(btnSignInLoginStudent);
-        gridLoginStudent.add(hbBtnSignInLoginStudent, 1, 5);
-
-        // membuat tombol back
-        Button btnBackLoginStudent =  new Button("Back");
-        HBox hbBtnBackLoginStudent = new HBox(10);
-        hbBtnBackLoginStudent.setAlignment(Pos.BOTTOM_LEFT);
-        hbBtnBackLoginStudent.getChildren().add(btnBackLoginStudent);
-        gridLoginStudent.add(hbBtnBackLoginStudent, 0, 5);
-
-        // mengatur fungsi tombol back
-        btnBackLoginStudent.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                stageLoginStudent.close();
-                primaryStage.show();
-            }
-        });
-
-        // menampilkan stage2
-        Scene sceneLoginStudent = new Scene(gridLoginStudent, 300, 275);
-        stageLoginStudent.setScene(sceneLoginStudent);
-        stageLoginStudent.show();
-    }
-
-    private static void halamanLoginAdmin(Stage primaryStage) {
-        primaryStage.close();
-
-        Stage stageLoginAdmin = new Stage();
-        stageLoginAdmin.setTitle("Login Admin");
-
-        GridPane gridLoginAdmin = new GridPane();
-        gridLoginAdmin.setAlignment(Pos.CENTER);
-        gridLoginAdmin.setHgap(10);
-        gridLoginAdmin.setVgap(10);
-        gridLoginAdmin.setPadding(new Insets(25, 25, 25, 25));
-
-        // judul
-        Text textTitleLoginAdmin = new Text("Login Admin");
-        textTitleLoginAdmin.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        gridLoginAdmin.add(textTitleLoginAdmin, 0, 0, 2, 1);
-
-        // label username
-        Label userName = new Label("User Name:");
-        gridLoginAdmin.add(userName, 0, 1);
-
-        // textfield username
-        TextField textFieldUserName = new TextField();
-        textFieldUserName.setPromptText ("Masukkan username");
-        gridLoginAdmin.add(textFieldUserName, 1, 1);
-
-        // label password
-        Label passWord = new Label("Password:");
-        gridLoginAdmin.add(passWord, 0, 2);
-
-        // textfield password
-        TextField textFieldPassWord = new TextField();
-        textFieldPassWord.setPromptText ("Masukkan password");
-        gridLoginAdmin.add(textFieldPassWord, 1, 2);
-
-        // membuat tombol sign in admin
-        Button btnSignInLoginAdmin =  new Button("Sign in");
-        HBox hbBtnSignInLoginAdmin = new HBox(10);
-        hbBtnSignInLoginAdmin.setAlignment(Pos.BOTTOM_RIGHT);
-        hbBtnSignInLoginAdmin.getChildren().add(btnSignInLoginAdmin);
-        gridLoginAdmin.add(hbBtnSignInLoginAdmin, 1, 5);
-
-        // membuat tombol back
-        Button btnBackLoginAdmin =  new Button("Back");
-        HBox hbBtnBackLoginAdmin = new HBox(10);
-        hbBtnBackLoginAdmin.setAlignment(Pos.BOTTOM_LEFT);
-        hbBtnBackLoginAdmin.getChildren().add(btnBackLoginAdmin);
-        gridLoginAdmin.add(hbBtnBackLoginAdmin, 0, 5);
-
-        // mengatur fungsi tombol back
-        btnBackLoginAdmin.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                stageLoginAdmin.close();
-                primaryStage.show();
-            }
-        });
-
-        // menampilkan stage login admin
-        Scene sceneLoginAdmin = new Scene(gridLoginAdmin, 300, 275);
-        stageLoginAdmin.setScene(sceneLoginAdmin);
-        stageLoginAdmin.show();
     }
 
     public static void main(String[] args) {
