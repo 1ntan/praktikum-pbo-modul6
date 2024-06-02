@@ -1,4 +1,4 @@
-package com.tugas.gui;
+package com.tugas.gui.student;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class HalamanLoginStudent {
-    static void halamanLoginStudent(Stage primaryStage) {
+    public static void halamanLoginStudent(Stage primaryStage) {
         primaryStage.close();
 
         Stage stageLoginStudent = new Stage();

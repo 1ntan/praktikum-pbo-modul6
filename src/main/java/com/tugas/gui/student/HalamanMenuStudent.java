@@ -1,4 +1,4 @@
-package com.tugas.gui;
+package com.tugas.gui.student;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

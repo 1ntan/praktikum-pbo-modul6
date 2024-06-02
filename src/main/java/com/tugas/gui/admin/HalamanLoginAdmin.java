@@ -1,4 +1,4 @@
-package com.tugas.gui;
+package com.tugas.gui.admin;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -17,7 +17,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class HalamanLoginAdmin {
-    static void halamanLoginAdmin(Stage primaryStage) {
+    public static void halamanLoginAdmin(Stage primaryStage) {
         primaryStage.close();
 
         Stage stageLoginAdmin = new Stage();

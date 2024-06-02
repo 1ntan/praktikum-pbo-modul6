@@ -1,5 +1,8 @@
 package com.tugas.gui;
 
+import com.tugas.data.Admin;
+import com.tugas.gui.admin.HalamanLoginAdmin;
+import com.tugas.gui.student.HalamanLoginStudent;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -85,6 +88,8 @@ public class HalamanAwal extends Application {
                         break;
 
                 }
+                textFieldPilihan.setText("");
+
             }
         });
 
